@@ -49,13 +49,33 @@
       return true;
     };
     console.log(people.every()); // false
-    // Array.prototype.find()
+    Array.prototype.find = function(arg){
+      for (let i = 0; i < this.length; i++){
+        if (this[i].id === arg) {
+          return this[i];
+          break;
+        }
+      }
+      return null;
+    };
+    console.log(comments.find(823423));
     // Find is like filter, but instead returns just the one you are looking for
     // find the comment with the ID of 823423
 
-    // Array.prototype.findIndex()
+    Array.prototype.findIndex = function(arg){
+      for(let i = 0; i < this.length; i++){
+        if (this[i].id === arg) {
+          // return i;
+          this.splice(i, 1);
+          break;
+        }
+      }
+      return -1;
+    };
     // Find the comment with this ID
     // delete the comment with the ID of 823423
+    comments.findIndex(823423);
+    console.log(comments);
 
   </script>
 </body>
