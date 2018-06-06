@@ -27,68 +27,85 @@
     // Some and Every Checks
     // Array.prototype.some() // is at least one person 19 or older?
     // const isAdult = people.some(()=>{});
-    Array.prototype.some = function(){
-      const year = new Date(Date.now()).getFullYear();
-      for(let i = 0; i < this.length; i++){
-        if ( year - this[i].year >= 19 ) {
-          return true;
-          break;
-        }
-      }
-      return false;
-    };
-    console.log(people.some()); // true
+    // Array.prototype.some = function(){
+    //   const year = new Date(Date.now()).getFullYear();
+    //   for(let i = 0; i < this.length; i++){
+    //     if ( year - this[i].year >= 19 ) {
+    //       return true;
+    //       break;
+    //     }
+    //   }
+    //   return false;
+    // };
+
+    // const isAdult = people.some((person)=>{
+    //   const currentYear = new Date().getFullYear();
+    //   if (currentYear - person.year >= 19) {
+    //     return true;
+    //   }
+    // });
+
+    const isAdult = people.some(person => (new Date().getFullYear()) - person.year >= 19);
+    console.log({isAdult});
+
+    // console.log(people.some()); // true
     // Array.prototype.every() // is everyone 19 or older?
-    Array.prototype.every = function(){
-      const year = new Date(Date.now()).getFullYear();
-      for (let i = 0; i < this.length; i++){
-        if (year - this[i].year < 19 ) {
-          return false;
-          break;
-        }
-      }
-      return true;
-    };
-    console.log(people.every()); // false
-    Array.prototype.find = function(arg){
-      for (let i = 0; i < this.length; i++){
-        if (this[i].id === arg) {
-          return this[i];
-          break;
-        }
-      }
-      return null;
-    };
+    // Array.prototype.every = function(){
+    //   const year = new Date(Date.now()).getFullYear();
+    //   for (let i = 0; i < this.length; i++){
+    //     if (year - this[i].year < 19 ) {
+    //       return false;
+    //       break;
+    //     }
+    //   }
+    //   return true;
+    // };
+
+    const allAdults = people.every(person => (new Date().getFullYear()) - person.year >= 19);
+    console.log({allAdults});
+
+    // console.log(people.every()); // false
+
+    // Array.prototype.find = function(arg){
+    //   for (let i = 0; i < this.length; i++){
+    //     if (this[i].id === arg) {
+    //       return this[i];
+    //       break;
+    //     }
+    //   }
+    //   return null;
+    // };
     // const comment = comments.find((comment) => {
     //   if (comment.id === 823423) {
     //     return true;
     //   }
     // });
-    // const comment = comments.find(c => c.id === 823423);
-
-    console.log(comments.find(823423));
+    const comment = comments.find(c => c.id === 823423);
+    console.log(comment);
+    // console.log(comments.find(823423));
     // Find is like filter, but instead returns just the one you are looking for
     // find the comment with the ID of 823423
 
-    Array.prototype.findIndex = function(arg){
-      for(let i = 0; i < this.length; i++){
-        if (this[i].id === arg) {
-          // return i;
-          this.splice(i, 1);
-          break;
-        }
-      }
-      return -1;
-    };
+    // Array.prototype.findIndex = function(arg){
+    //   for(let i = 0; i < this.length; i++){
+    //     if (this[i].id === arg) {
+    //       // return i;
+    //       this.splice(i, 1);
+    //       break;
+    //     }
+    //   }
+    //   return -1;
+    // };
 
 
     // Find the comment with this ID
     // delete the comment with the ID of 823423
-    comments.findIndex(823423);
-    console.log(comments);
+    // comments.findIndex(823423);
+    // console.log(comments);
 
     const index = comments.findIndex(comment=>comment.id ===823423);
-    const newComments = [...comments.slice(0, index), ...comment.slice(index + 1)];
+    const newComments = [...comments.slice(0, index), ...comments.slice(index + 1)];
+    console.log(newComments);
 
   </script>
 </body>
