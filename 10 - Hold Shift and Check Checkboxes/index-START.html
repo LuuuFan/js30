@@ -101,8 +101,31 @@
 <script>
     const inputs = document.querySelectorAll('input');
     inputs.forEach(input => {
-      input.addEventListener('click', findChecked);
+      input.addEventListener('click', handleCheck);
     });
+
+    let lastChecked;
+
+    // solution
+    function handleCheck(e){
+
+      let inBetween = false;
+      // check if they had the shift key down
+      // AND check that they are checking it
+      if(e.shiftKey && this.checked){
+        // go ahead and do what we plase
+        // loop over every single checkbox
+        inputs.forEach(input => {
+          if (input === this || input === lastChecked) {
+            inBetween = !inBetween;
+          }
+          if (inBetween) {
+            input.checked = true;
+          }
+        });
+      }
+      lastChecked = this;
+    }
 
     function findChecked(){
       let checkedIndex, inputIndex;
