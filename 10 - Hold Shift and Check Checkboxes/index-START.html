@@ -99,6 +99,38 @@
   </div>
 
 <script>
+    const inputs = document.querySelectorAll('input');
+    inputs.forEach(input => {
+      input.addEventListener('click', findChecked);
+    });
+
+    function findChecked(){
+      let checkedIndex, inputIndex;
+
+      inputs.forEach((input, idx) => {
+        if (input.checked && input !== this) {
+          checkedIndex = idx;
+        } 
+
+        if (input === this ){
+          inputIndex = idx;
+        }
+      });
+
+      if (checkedIndex >= 0 && inputIndex >= 0) {
+        if (checkedIndex > inputIndex) {
+          checkInput(inputIndex, checkedIndex);
+        } else if(checkedIndex < inputIndex) {
+          checkInput(checkedIndex, inputIndex);
+        }
+      }
+    }
+
+  function checkInput(i,j){
+    for(let m = i; m <= j; m++){
+      inputs[m].checked = true;
+    }
+  }
 </script>
 </body>
 </html>
