@@ -34,7 +34,7 @@ function handleProgress(){
 }
 
 function scrub(e){
-	console.log('~~~~scrub~~~~~');
+	// console.log('~~~~scrub~~~~~');
 	const scrubTime = e.offsetX / progress.offsetWidth * video.duration;
 	video.currentTime = scrubTime;
 }
@@ -54,3 +54,7 @@ progress.addEventListener('click', scrub);
 progress.addEventListener('mousemove', (e) => mousedown && scrub(e));
 progress.addEventListener('mousedown', ()=> mousedown = true);
 progress.addEventListener('mouseup', ()=> mousedown = false);
+document.addEventListener('keydown', (e)=> {
+	// console.log(e.keyCode);
+	e.keyCode === 32 && togglePlay();	
+});
