@@ -23,6 +23,9 @@
       <input type="text" name="item" placeholder="Item Name" required>
       <input type="submit" value="+ Add Item">
     </form>
+    <button>clear list</button>
+    <button>uncheck all</button>
+    <button>check all</button>
   </div>
 
 <script>
@@ -62,9 +65,30 @@
     populateItems(items, itemsList);
   }
 
+  function handleClickButton(e){
+      if (this.innerHTML === 'clear list'){
+        while (items.length) {items.pop();}
+        localStorage.setItem('items', JSON.stringify(items));
+        populateItems(items, itemsList); 
+      }
+      if (this.innerHTML === 'uncheck all') {
+        items.forEach(item=>{item.done = false});
+        localStorage.setItem('items', JSON.stringify(items));
+        populateItems(items, itemsList);
+      }
+      if (this.innerHTML === 'check all') {
+        items.forEach(item=>{item.done = true});
+        localStorage.setItem('items', JSON.stringify(items));
+        populateItems(items, itemsList);
+      }
+  }
+
   addItems.addEventListener('submit', addItem);
   populateItems(items, itemsList);
   itemsList.addEventListener('click', toggleDone);
+
+  const buttons = document.querySelectorAll('button');
+  buttons.forEach(button => button.addEventListener('click', handleClickButton));
 </script>
 
 
