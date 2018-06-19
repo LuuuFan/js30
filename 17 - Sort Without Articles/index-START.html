@@ -46,6 +46,24 @@
 <script>
 const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
 
+const sortWord = {
+    'The': true, 
+    'An': true, 
+    'A': true
+  };
+const Bands = {};
+bands.forEach(band => {
+  if (sortWord[band.split(' ')[0]]) {
+     Bands[band.split(' ').slice(1).join(' ')] = band;
+  } else {
+    Bands[band] = band;
+  }
+});
+
+const sortedBands = Object.keys(Bands).sort().map(band => Bands[band]);
+
+console.log(sortedBands);
+
 
 </script>
 
