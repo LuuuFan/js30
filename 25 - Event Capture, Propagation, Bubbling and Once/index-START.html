@@ -39,7 +39,21 @@
 
 <button></button>
 <script>
+  const divs = document.querySelectorAll('div');
 
+  function logText(e){
+    console.log(this.classList.value);
+    // console.log(this);
+    e.stopPropagation(); // stop bubbling up
+  }
+
+  divs.forEach(div => div.addEventListener('click', logText, {
+    // function is going to run capture down 1=>2=>3
+    // capture: true
+    
+    // listen to click, unbind itself //removeEventListener
+    once: true
+  }));
 </script>
 </body>
 </html>
